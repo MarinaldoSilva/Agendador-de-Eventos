@@ -12,7 +12,7 @@ class EventoService:
         if data_evento and data_evento < timezone.now():
             #se data_evento false, já vai para o return externo e não valida.
             """A comparação das datas é feita após o serializer.is_valid(), se os dados passerem na validação, é feito a checagem das datas, após o is_valid() o campo data_evento é transformado em um obj do tipo data para salvar no banco e o datatime.now() é um obj, por isso quando fazemos a comparação do data_evento com o timezone.now() é feita a compração de dois objs do mesmo tipo yyyy-mm-ddThh:mm:ss..."""
-            return None
+            return {'data_evento': ['A data do evento não pode ser no passado']}
         
         """esse retorno 'None' é feito para que na validação na chamada da função create/update tenha algum retorno de passar pela validação"""
         return None
